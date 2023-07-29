@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Covid</title>
+    <link rel="icon" type="image/x-icon" href="COVID.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
+    </style>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- BarChart -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- PieChart -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- StackedBar -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- BasicLine -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- SemiCircle -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- 3DCylinder -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/cylinder.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="Mask2.png" width="70" height="50">COVID API</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index2.html">Next Page</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <input
+              id="inputSearch"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button
+              class="btn btn-outline-light"
+              type="submit"
+              onclick="search()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid" style="margin-top: 100px;">
+      <div class="container">
+        <div class="shadow p-3 mb-5 bg-body rounded">
+          <figure class="highcharts-figure">
+            <div id="container1"></div>
+            <p class="highcharts-description" style="font-family: roboto slab; font-size: 20px; text-align: center;">
+              Enter country's name to the search bar to see confirmed cases of that specific country for the past 3 years.
+            </p>
+          </figure>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <figure class="highcharts-figure">
+              <div id="stackedBar"></div>
+            </figure>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <p style="font-family: roboto slab; font-size: 15px;">
+              The coronavirus 2019 disease (COVID-19) pandemic has created both a public health crisis and an economic crisis in the United States. 
+              The pandemic has disrupted lives, pushed the hospital system to its capacity, and created a global economic slowdown. As of September 15, 2020 
+              there have been more than 6.5 million confirmed COVID-19 cases and more than 195,000 deaths in the United States (Johns Hopkins University n.d.). 
+              To put these numbers into context, the pandemic has now claimed more than three times the American lives that were lost in the 
+              Vietnam War (Ducharme 2020; authors’ calculations). The economic crisis is unprecedented in its scale: the pandemic has created a demand shock, 
+              a supply shock, and a financial shock all at once (Triggs and Kharas 2020). <br>
+              COVID-19 outbreak quickly spread to all corners of the globe. In Brazil, the outbreak was particularly frightening because it worsened existing 
+              health, political, economic, and social problems. The results already observed show the contagion ripple-spreading process across the country, causing 
+              the death of thousands of people each day and counting, added to a very serious wave of unemployment, scientific denial, and social precariousness. 
+              Based on this, this study reviews recent research that looked at the role of the government, the Brazilian health system, and the main economic and 
+              social impacts fostered by the pandemic.
+            </p>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <p style="font-family: roboto slab; font-size: 15.5px;">
+              Coronavirus infections began cropping up in Wuhan in December – and reportedly as early as November – but the Chinese authorities did not inform the public 
+              that the virus could pass between humans until late January.Now, as China celebrates what it claims is victory over the disease, the number of infections and 
+              deaths is increasing around the world. Officials from Australia, the US and the UK have accused Beijing of suppressing information, allowing a localised outbreak 
+              to turn into a pandemic. Beijing claims its strict lockdowns bought the world time that health authorities in some countries chose to squander. But interviews 
+              with early patients, medical workers and residents, as well as leaked internal documents, accounts from whistleblowers and research studies, show delays in the first 
+              few weeks of the epidemic, government missteps that would have far-reaching consequences. By the time officials revealed the infectiousness of the virus, 
+              hospitals in Wuhan were already overwhelmed and the numbers increased after the announcement. Video taken on 22 and 23 January showed crowds of patients at Wuhan 
+              No 6 hospital in Wuchang, another district of Wuhan. “It was so busy. We couldn’t go home,” said a nurse who slept in the hospital dormitory and rotated every four hours in a team of six people to keep up.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <figure class="highcharts-figure">
+              <div id="pieChart"></div>
+            </figure>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <figure class="highcharts-figure">
+              <div id="worldChart"></div>
+            </figure>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <p style="font-family: roboto slab; font-size: 16px;">
+              The global outbreak of coronavirus disease 2019 (COVID-19) is affecting every part of human lives, including the physical world. The measures taken to control the spread 
+              of the virus and the slowdown of economic activities have significant effects on the environment. Therefore, this study intends to explore the positive and negative environmental 
+              impacts of the COVID-19 pandemic, by reviewing the available scientific literatures. This study indicates that, the pandemic situation significantly improves air quality in 
+              different cities across the world, reduces GHGs emission, lessens water pollution and noise, and reduces the pressure on the tourist destinations, which may assist with the restoration 
+              of the ecological system. In addition, there are also some negative consequences of COVID-19, such as increase of medical waste, haphazard use and disposal of disinfectants, mask, and gloves; 
+              and burden of untreated wastes continuously endangering the environment. It seems that, economic activities will return soon after the pandemic, and the situation might change. Hence, 
+              this study also outlines possible ways to achieve long-term environmental benefits. It is expected that the proper implementation of the proposed strategies might be helpful for the global environmental sustainability.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <p style="font-family: roboto slab; font-size: 14.5px;">
+              The COVID-19 pandemic in France has resulted in 38,677,413 confirmed cases of COVID-19 and 161,857 deaths. The virus was confirmed to have reached France on 24 January 2020, when the first COVID-19 case in both 
+              Europe and France was identified in Bordeaux. The first five confirmed cases were all individuals who had recently arrived from China. A Chinese tourist who was admitted to hospital in Paris on 28 January 2020, 
+              died on 14 February 2020, making it the first COVID-19 death in France as well as the first COVID-19 death outside Asia. A key event in the spread of the disease across metropolitan France as well as its overseas 
+              territories was the annual assembly of the Christian Open Door Church between 17 and 24 February 2020 in Mulhouse which was attended by about 2,500 people, at least half of whom are believed to have contracted 
+              the virus. On 4 May 2020, retroactive testing of samples in one French hospital showed that a patient was probably already infected with the virus on 27 December 2019, almost a month before the first officially 
+              confirmed case. This was extended twice and ended on 11 May 2020, after a progressive lifting of lockdown and as face masks were made available to all citizens. On 2 May 2020, Health Minister Olivier Véran announced 
+              that the government would seek to extend the health emergency period until 24 July 2020. Several mayors opposed the 11 May 2020 lifting of the lockdown, which had been announced by the president a few weeks earlier 
+              in a televised address to the nation, saying it was premature. Véran's bill was discussed in Senate on 4 May 2020.
+            </p>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <figure class="highcharts-figure">
+              <div id="cylinder"></div>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <figure class="highcharts-figure">
+              <div id="semiCircle"></div>
+            </figure>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="shadow p-3 mb-5 bg-body rounded">
+            <p style="font-family: roboto slab; font-size: 14.5px;">
+              In the beginning of the COVID-19 US epidemic in March 2020, sweeping lockdowns and other aggressive measures were put in place and retained in many states until end of August of 2020; the ensuing economic downturn 
+              has led many to question the wisdom of the early COVID-19 policy measures in the US. This study’s objective was to evaluate the cost and benefit of the US COVID-19-mitigating policy intervention during the first six 
+              month of the pandemic in terms of COVID-19 mortality potentially averted, versus mortality potentially attributable to the economic downturn. We conducted a synthesis-based retrospective cost-benefit analysis of the 
+              full complex of US federal, state, and local COVID-19-mitigating measures, including lockdowns and all other COVID-19-mitigating measures, against the counterfactual scenario involving no public health intervention. 
+              We derived parameter estimates from a rapid review and synthesis of recent epidemiologic studies and economic literature on regulation-attributable mortality. According to our estimates, the policy intervention 
+              saved 866,350–1,711,150 lives (4,886,214–9,650,886 quality-adjusted life-years), while mortality attributable to the economic downturn was 57,922–245,055 lives (2,093,811–8,858,444 life-years). We conclude that the 
+              number of lives saved by the spring-summer lockdowns and other COVID-19-mitigation was greater than the number of lives potentially lost due to the economic downturn. However, the net impact on quality-adjusted life expectancy is ambiguous.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
